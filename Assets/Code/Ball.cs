@@ -2,17 +2,56 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Movement : MonoBehaviour
+public class Ball : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [Header("Reference")]
+    [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private LineRenderer lr;
+
+
+    [Header("Attributes")]
+    [SerializeField] private float maxPower = 10f;
+    [SerializeField] private float power = 2f;
+
+    private bool isDragging;
+
+    private void Update()
     {
-        
+        PlayerInput();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void PlayerInput()
     {
-        
+        Vector2 inputPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        float distance = Vector2.Distance(transform.position, inputPos);
+
+        if (Input.GetMouseButtonDown(0) && distance <= 0.5f)
+            DragStart();
+        if (Input.GetMouseButton(0) && isDragging)
+            DragChange();
+        if (Input.GetMouseButtonUp(0) && isDragging)
+            DragRelease(inputPos);
+    }
+
+    private void DragStart()
+    {
+        isDragging = true;
+    }
+
+    private void DragChange()
+    {
+        // Vous pouvez ajouter du code ici pour mettre à jour l'affichage de la trajectoire de tir.
+    }
+
+    private void DragRelease(Vector2 pos)
+    {
+        float distance = Vector2.Distance((Vector2)transform.position, pos);
+        isDragging = false;
+        if (distance < 1f)
+        {
+            // Ajoutez votre code ici pour effectuer une action spécifique lorsque la distance est inférieure à 1f.
+        }
+        Vector2 dir = (Vector2)transform.position - pos;
+        rb.velocity = Vector2.ClampMagnitude(dir * power, maxPower);
     }
 }
