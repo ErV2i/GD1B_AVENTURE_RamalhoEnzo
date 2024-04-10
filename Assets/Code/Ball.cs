@@ -40,7 +40,7 @@ public class Ball : MonoBehaviour
 
     private void DragChange()
     {
-        // Vous pouvez ajouter du code ici pour mettre à jour l'affichage de la trajectoire de tir.
+ 
     }
 
     private void DragRelease(Vector2 pos)
@@ -49,7 +49,7 @@ public class Ball : MonoBehaviour
         isDragging = false;
         if (distance < 1f)
         {
-            // Ajoutez votre code ici pour effectuer une action spécifique lorsque la distance est inférieure à 1f.
+    
         }
         Vector2 dir = (Vector2)transform.position - pos;
         rb.velocity = Vector2.ClampMagnitude(dir * power, maxPower);
