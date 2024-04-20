@@ -1,12 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Ball : MonoBehaviour
 {
     [Header("Reference")]
     [SerializeField] private Rigidbody2D rb;
-    [SerializeField] private LineRenderer lr;
+    [SerializeField] private Text shotsText;
+    
 
 
     [Header("Attributes")]
@@ -14,6 +14,11 @@ public class Ball : MonoBehaviour
     [SerializeField] private float power = 2f;
 
     private bool isDragging;
+    private int shotsCount = 0;
+     private void Start()
+    {
+        UpdateShotsText();
+    }
 
     private void Update()
     {
@@ -47,11 +52,18 @@ public class Ball : MonoBehaviour
     {
         float distance = Vector2.Distance((Vector2)transform.position, pos);
         isDragging = false;
-        if (distance < 1f)
-        {
-    
-        }
+         
+        shotsCount++;
+        UpdateShotsText();
+        
         Vector2 dir = (Vector2)transform.position - pos;
         rb.velocity = Vector2.ClampMagnitude(dir * power, maxPower);
+    }
+      private void UpdateShotsText()
+    {
+        if (shotsText != null)
+        {
+            shotsText.text = "Shots: " + shotsCount.ToString();
+        }
     }
 }
