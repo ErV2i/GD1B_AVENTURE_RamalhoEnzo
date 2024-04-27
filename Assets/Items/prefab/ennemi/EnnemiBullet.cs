@@ -8,6 +8,7 @@ public class EnnemiBullet : MonoBehaviour
     private Rigidbody2D rb;
     public float force;
     private float timer;
+     public int damageAmount = 1;
     
 
     void Start()
@@ -33,6 +34,7 @@ public class EnnemiBullet : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            other.gameObject.GetComponent<CharacterInfo>().TakeDamage(damageAmount);
             Destroy (gameObject);
         }
     }

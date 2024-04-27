@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class CharacterInfo : MonoBehaviour
 {
@@ -20,5 +21,14 @@ public class CharacterInfo : MonoBehaviour
          } else {
             heart[i].enabled = false;
          }
+         if (health <= 0)
+         {
+            Destroy (gameObject);
+         }
+    }
+     public void TakeDamage(int damageAmount)
+    {
+        health -= damageAmount;
+        numberOfHeart -= damageAmount;
     }
 }
