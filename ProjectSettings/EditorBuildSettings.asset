@@ -20,4 +20,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/combat final.unity
     guid: 07103c5d77766d74887116f3f7fc3004
+  - enabled: 1
+    path: Assets/Scenes/tunel.unity
+    guid: 767d3e5cff523fc4588662b33d38ff32
+  - enabled: 1
+    path: Assets/Scenes/lobby.unity
+    guid: 817670dbc98e672469bfe5d9d3ba5ca8
   m_configObjects: {}

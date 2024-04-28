@@ -31,4 +31,13 @@ public class CharacterInfo : MonoBehaviour
         health -= damageAmount;
         numberOfHeart -= damageAmount;
     }
+     public void CollectItem(GameObject item)
+    {
+        if (item.CompareTag("pognon"))
+        {
+            moneyCount++; 
+        }
+
+        Destroy(item);
+    }
 }
